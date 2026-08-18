@@ -31,7 +31,7 @@ export default function PrincipleSection() {
           </div>
 
           {/* Architecture visual */}
-          <div className="rounded-lg border border-[#dde2ea] bg-white p-8">
+          {/* <div className="rounded-lg border border-[#dde2ea] bg-white p-8">
             <div className="space-y-4">
               {layerStack.map((layer, i) => (
                 <div key={layer.label}>
@@ -59,7 +59,7 @@ export default function PrincipleSection() {
               Infrastructure-agnostic. ISO 27001 certified. Data ownership,
               always.
             </p>
-          </div>
+          </div> */}
         </div>
       </Container>
     </section>

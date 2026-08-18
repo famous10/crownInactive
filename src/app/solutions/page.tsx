@@ -155,7 +155,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Deployments */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#071020]">
         <Container>
           <SectionHeading
             eyebrow="Where we operate"
@@ -163,11 +163,11 @@ export default function SolutionsPage() {
           />
 
           <div className="mt-12">
-            <div className="rounded-xl border border-[#dde2ea] bg-[#f5f6f8] p-8 md:p-12">
+            <div className="rounded-xl border border-[#1a2f4a] bg-[#0b1a2e] p-8 md:p-12">
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
                 <div>
                   <p className="type-eyebrow text-[#e8272a] mb-3">Live deployments</p>
-                  <h3 className="type-h3 text-[#0b1a2e] mb-4">
+                  <h3 className="type-h3 text-white mb-4">
                     Active sovereign partnerships
                   </h3>
                   <div className="flex flex-wrap gap-3 mb-6">
@@ -175,7 +175,7 @@ export default function SolutionsPage() {
                       { label: "Nigeria", partner: "Galaxy Backbone" },
                       { label: "Kenya", partner: "Konza (KoTDA)" },
                     ].map((d) => (
-                      <span key={d.label} className="inline-flex items-center rounded-full border border-[#0b1a2e]/20 bg-[#0b1a2e]/5 px-3.5 py-1.5 text-xs font-semibold text-[#0b1a2e]">
+                      <span key={d.label} className="inline-flex items-center rounded-full border border-[#e8272a]/30 bg-[#e8272a]/10 px-3.5 py-1.5 text-xs font-semibold text-[#e8272a]">
                         {d.label} — {d.partner}
                       </span>
                     ))}
@@ -186,7 +186,7 @@ export default function SolutionsPage() {
                       { label: "Zambia" },
                       { label: "Ghana" },
                     ].map((d) => (
-                      <span key={d.label} className="inline-flex items-center rounded-full border border-[#dde2ea] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#4b5a6e]">
+                      <span key={d.label} className="inline-flex items-center rounded-full border border-[#1a2f4a] bg-[#071020] px-3.5 py-1.5 text-xs font-semibold text-white/70">
                         {d.label} — Pipeline
                       </span>
                     ))}
@@ -204,8 +204,8 @@ export default function SolutionsPage() {
                     >
                       <path
                         d="M130 18 C100 18 72 28 55 48 C38 68 32 95 30 118 C28 140 32 162 38 180 C44 198 42 218 52 238 C62 258 80 278 100 295 C115 308 125 316 135 312 C148 306 162 292 172 274 C182 256 184 236 182 216 C180 196 174 178 172 158 C170 136 168 112 176 92 C184 72 194 50 175 30 C162 16 146 18 130 18Z"
-                        fill="#eceef2"
-                        stroke="#dde2ea"
+                        fill="#071020"
+                        stroke="#1a2f4a"
                         strokeWidth="1.5"
                       />
                       <circle cx="95" cy="195" r="6" fill="#e8272a" />

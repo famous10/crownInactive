@@ -87,54 +87,23 @@ export default function OnGovPage() {
       {/* Overview */}
       <section className="py-20 bg-white">
         <Container>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
-            <div>
-              <p className="type-eyebrow text-[#e8272a] mb-3">Overview</p>
-              <h2 className="type-h2 text-[#0b1a2e]">
-                Built on one non-negotiable principle
-              </h2>
-              <p className="mt-4 type-body text-[#4b5a6e]">
-                1Gov is Crown Interactive&apos;s Digital Public Infrastructure suite for
-                national and sub-national governments. It provides the full stack a
-                modern civil service needs — identity, collaboration, document
-                management, and citizen services — deployed on infrastructure the
-                government already controls or trusts.
-              </p>
-              <p className="mt-4 type-body text-[#4b5a6e]">
-                Unlike proprietary foreign platforms, data is always owned by the
-                licensee, never by Crown. Crown designs and develops the platform; it
-                does not operate it or hold government data.
-              </p>
-            </div>
-            <div className="rounded-lg border border-[#dde2ea] bg-[#f5f6f8] p-8">
-              <p className="type-eyebrow text-[#e8272a] mb-4">Deployment model</p>
-              <h3 className="type-h3 text-[#0b1a2e] mb-3">
-                Government-to-Government, by design
-              </h3>
-              <p className="type-body-sm text-[#4b5a6e]">
-                1Gov is typically delivered in partnership with a national sovereign
-                hosting authority — for example, Galaxy Backbone in Nigeria, or Konza
-                (KoTDA) in Kenya. This keeps the platform on trusted national
-                infrastructure, with Crown providing the technology while government
-                retains full sovereignty over data and operations.
-              </p>
-              <div className="mt-6 flex flex-col gap-3">
-                <div className="flex items-center gap-3 rounded-lg border border-[#dde2ea] bg-white px-4 py-3">
-                  <div className="h-8 w-8 rounded bg-[#f5f6f8] flex items-center justify-center text-[10px] font-bold text-[#0b1a2e]">G</div>
-                  <div>
-                    <div className="text-sm font-semibold text-[#0b1a2e]">Galaxy Backbone</div>
-                    <div className="text-xs text-[#8898aa] uppercase tracking-wide">Nigeria</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 rounded-lg border border-[#dde2ea] bg-white px-4 py-3">
-                  <div className="h-8 w-8 rounded bg-[#f5f6f8] flex items-center justify-center text-[10px] font-bold text-[#0b1a2e]">K</div>
-                  <div>
-                    <div className="text-sm font-semibold text-[#0b1a2e]">Konza (KoTDA)</div>
-                    <div className="text-xs text-[#8898aa] uppercase tracking-wide">Kenya</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="max-w-3xl">
+            <p className="type-eyebrow text-[#e8272a] mb-3">Overview</p>
+            <h2 className="type-h2 text-[#0b1a2e]">
+              Built on one non-negotiable principle
+            </h2>
+            <p className="mt-4 type-body text-[#4b5a6e]">
+              1Gov is Crown Interactive&apos;s Digital Public Infrastructure suite for
+              national and sub-national governments. It provides the full stack a
+              modern civil service needs — identity, collaboration, document
+              management, and citizen services — deployed on infrastructure the
+              government already controls or trusts.
+            </p>
+            <p className="mt-4 type-body text-[#4b5a6e]">
+              Unlike proprietary foreign platforms, data is always owned by the
+              licensee, never by Crown. Crown designs and develops the platform; it
+              does not operate it or hold government data.
+            </p>
           </div>
         </Container>
       </section>

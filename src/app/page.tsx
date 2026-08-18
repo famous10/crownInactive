@@ -23,7 +23,7 @@ export default function HomePage() {
       <PrincipleSection />
       <DeploymentsSection />
       <SectorSection />
-      <CTASection
+      {/* <CTASection
         light
         eyebrow="Let's talk"
         title="Building critical infrastructure for Africa"
@@ -32,7 +32,7 @@ export default function HomePage() {
         primaryHref="/contact"
         secondaryLabel="See our solutions"
         secondaryHref="/solutions"
-      />
+      /> */}
     </>
   )
 }
