@@ -1,7 +1,6 @@
-import Link from "next/link"
 import Container from "@/components/ui/Container"
+import Button from "@/components/ui/Button"
 import { layerStack } from "@/data/solutions"
-import { ArrowRight } from "lucide-react"
 
 const africaMap = (
   <svg
@@ -9,7 +8,7 @@ const africaMap = (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
-    className="w-full h-full text-white/10"
+    className="w-full h-full text-white/5"
   >
     <path
       d="M100 10 C60 10 30 40 25 80 C20 110 25 140 30 160 C35 180 30 200 40 220 C50 240 70 260 90 275 C100 282 110 285 120 280 C140 270 160 250 170 225 C180 200 178 175 175 155 C172 135 165 115 165 95 C165 65 155 35 100 10Z"
@@ -21,26 +20,16 @@ const africaMap = (
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden bg-[#0b1a2e] py-20 md:py-28 lg:py-32"
+      className="relative overflow-hidden bg-crown-navy py-20 md:py-28 lg:py-32"
       aria-label="Hero"
     >
-      {/* Layer stack badges - horizontal at top */}
-      <Container>
-        <div className="mb-12 flex flex-wrap items-center gap-x-6 gap-y-2" role="img" aria-label="Technology stack layers">
-          {layerStack.map((layer, i) => (
-            <span
-              key={layer.label}
-              className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: `rgba(255,255,255,${0.25 + i * 0.12})` }}
-            >
-              {layer.label}
-            </span>
-          ))}
-          <span className="text-xs text-white/25 ml-auto hidden md:inline">
-            Every layer is licensee-owned. Crown builds the stack; it never holds what runs on it.
-          </span>
-        </div>
-      </Container>
+      {/* Faint Africa map watermark behind the right side */}
+      <div
+        className="pointer-events-none absolute right-0 top-0 hidden h-full w-1/2 items-center justify-end lg:flex"
+        aria-hidden
+      >
+        <div className="aspect-[2/3] h-full max-h-[90%]">{africaMap}</div>
+      </div>
 
       {/* Subtle background texture */}
       <div
@@ -53,10 +42,10 @@ export default function Hero() {
       />
 
       <Container>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
+        <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
           {/* Left: content */}
           <div>
-            <p className="type-eyebrow text-[#e8272a] mb-4">
+            <p className="type-eyebrow text-crown-red mb-4">
               Sovereign Digital Public Infrastructure
             </p>
 
@@ -73,28 +62,49 @@ export default function Hero() {
               licensee&apos;s hands.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/solutions"
-                className="inline-flex items-center gap-2 rounded bg-[#e8272a] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#c01e21] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e8272a]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1a2e]"
-              >
+            <div className="mt-8">
+              <Button as="link" href="/solutions" variant="primary" size="lg">
                 Explore our solutions
-              </Link>
-              <Link
-                href="/why-crown"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 transition-colors hover:text-white"
-              >
-                Why sovereignty matters{" "}
-                <ArrowRight size={14} aria-hidden />
-              </Link>
+              </Button>
             </div>
           </div>
 
-          {/* Right: Africa map */}
-          <div className="hidden lg:block relative w-full max-w-md mx-auto lg:mx-0">
-            <div className="aspect-[2/3] max-w-md">
-              {africaMap}
+          {/* Right: stacked horizontal bar chart */}
+          <div className="relative w-full">
+            <div
+              className="space-y-3"
+              role="img"
+              aria-label="Technology stack layers"
+            >
+              {layerStack.map((layer, i) => {
+                // Top bar darkest, progressively lighter toward the bottom.
+                const opacity = 0.16 + i * 0.08
+                return (
+                  <div key={layer.label} className="flex items-center gap-4">
+                    <div
+                      className="relative h-11 rounded-md md:h-12"
+                      style={{
+                        width: layer.width,
+                        backgroundColor: `rgba(255,255,255,${opacity})`,
+                      }}
+                    >
+                      <span
+                        className="absolute left-0 top-0 h-full w-1.5 rounded-l-md bg-crown-red"
+                        aria-hidden
+                      />
+                    </div>
+                    <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-widest text-white/50">
+                      {layer.label}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
+
+            <p className="mt-6 type-caption text-white/40 max-w-md">
+              Every layer is licensee-owned. Crown builds the stack; it never
+              holds what runs on it.
+            </p>
           </div>
         </div>
       </Container>

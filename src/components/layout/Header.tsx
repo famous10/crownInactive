@@ -2,7 +2,6 @@ import Link from "next/link"
 import Container from "@/components/ui/Container"
 import DesktopNav from "@/components/navigation/DesktopNav"
 import MobileNav from "@/components/navigation/MobileNav"
-import Button from "@/components/ui/Button"
 
 export default function Header() {
   return (
@@ -12,24 +11,20 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex flex-col leading-none hover:opacity-80 transition-opacity"
             aria-label="Crown Interactive home"
           >
             <span className="text-lg font-bold tracking-tight">
               <span className="text-white">CROWN</span>
-              <span className="text-[#e8272a]">interactive</span>
+              <span className="text-crown-red">interactive</span>
+            </span>
+            <span className="mt-0.5 text-[10px] font-medium uppercase tracking-widest text-white/40">
+              Maximizing Potential Value
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <DesktopNav />
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:block">
-            <Button as="link" href="/contact" variant="primary" size="sm">
-              Get in touch
-            </Button>
-          </div>
 
           {/* Mobile Nav */}
           <MobileNav />

@@ -21,8 +21,8 @@ export default function PlatformsSection() {
           id="platforms-heading"
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {solutions.map((solution) => {
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {solutions.slice(0, 3).map((solution) => {
             const Icon = iconMap[solution.sector] ?? Server
             return (
               <Link
