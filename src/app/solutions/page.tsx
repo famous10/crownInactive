@@ -39,6 +39,9 @@ export default function SolutionsPage() {
       <section className="bg-[#071020] py-8">
         <Container>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+            <span className="text-xs font-semibold uppercase tracking-widest text-white/50">
+              A layered enterprise architecture
+            </span>
             {["Experience", "Applications", "Integration", "Data", "Infrastructure"].map((layer, i) => (
               <span key={layer} className="text-xs font-semibold uppercase tracking-widest" style={{ color: `rgba(255,255,255,${0.25 + i * 0.12})` }}>
                 {layer}
@@ -123,9 +126,6 @@ export default function SolutionsPage() {
             </div>
 
             <div className="rounded-lg border border-[#dde2ea] bg-white p-8">
-              <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5a6e] mb-6">
-                A layered enterprise architecture
-              </p>
               <div className="space-y-4">
                 {layerStack.map((layer, i) => (
                   <div key={layer.label}>

@@ -5,10 +5,89 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { navigation } from "@/data/navigation"
+import type { NavDropdownItem } from "@/types"
+
+interface MobileNavItemProps {
+  items: NavDropdownItem[]
+  openSections: Set<string>
+  toggleSection: (href: string) => void
+  pathname: string
+  depth?: number
+}
+
+function MobileNavItemList({
+  items,
+  openSections,
+  toggleSection,
+  pathname,
+  depth = 0,
+}: MobileNavItemProps) {
+  const indentClass = depth === 0 ? "px-5" : depth === 1 ? "pl-8 pr-5" : "pl-11 pr-5"
+
+  return (
+    <div className={depth > 0 ? "bg-[#071020] pb-2" : undefined}>
+      {items.map((item) => {
+        const hasChildren = item.children && item.children.length > 0
+        const isOpen = openSections.has(item.href)
+
+        return (
+          <div
+            key={item.href}
+            className={`border-b border-[#1a2f4a] last:border-0 ${
+              depth > 0 ? "border-[#132238]" : ""
+            }`}
+          >
+            {hasChildren ? (
+              <>
+                <button
+                  onClick={() => toggleSection(item.href)}
+                  aria-expanded={isOpen}
+                  className={`w-full flex items-center justify-between py-3.5 text-sm font-semibold transition-colors hover:bg-white/5 ${indentClass} ${
+                    pathname.startsWith(item.href)
+                      ? "text-[#e8272a]"
+                      : "text-white/80"
+                  }`}
+                >
+                  {item.label}
+                  <ChevronDown
+                    size={16}
+                    className={`transition-transform duration-200 text-white/50 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <MobileNavItemList
+                    items={item.children!}
+                    openSections={openSections}
+                    toggleSection={toggleSection}
+                    pathname={pathname}
+                    depth={depth + 1}
+                  />
+                )}
+              </>
+            ) : (
+              <Link
+                href={item.href}
+                className={`block py-3.5 text-sm transition-colors hover:bg-white/5 ${indentClass} ${
+                  pathname === item.href || pathname.startsWith(item.href + "/")
+                    ? "text-[#e8272a] font-semibold"
+                    : "text-white/70"
+                }`}
+              >
+                {item.label}
+              </Link>
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
-  const [openSection, setOpenSection] = useState<string | null>(null)
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set())
   const pathname = usePathname()
   const prevPathnameRef = useRef(pathname)
 
@@ -17,7 +96,7 @@ export default function MobileNav() {
     if (prevPathnameRef.current !== pathname) {
       prevPathnameRef.current = pathname
       setIsOpen(false)
-      setOpenSection(null)
+      setOpenSections(new Set())
     }
   }, [pathname])
 
@@ -33,13 +112,25 @@ export default function MobileNav() {
     }
   }, [isOpen])
 
+  const toggleSection = (href: string) => {
+    setOpenSections((prev) => {
+      const next = new Set(prev)
+      if (next.has(href)) {
+        next.delete(href)
+      } else {
+        next.add(href)
+      }
+      return next
+    })
+  }
+
   return (
     <div className="lg:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close navigation" : "Open navigation"}
         aria-expanded={isOpen}
-        className="flex items-center justify-center w-10 h-10 rounded text-[#0b1a2e] hover:bg-[#f5f6f8] transition-colors"
+        className="flex items-center justify-center w-10 h-10 rounded text-white hover:bg-white/10 transition-colors"
       >
         {isOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
@@ -55,18 +146,18 @@ export default function MobileNav() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-[min(340px,90vw)] bg-white shadow-2xl transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 z-50 h-full w-[min(340px,90vw)] bg-[#0b1a2e] shadow-2xl transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!isOpen}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between border-b border-[#dde2ea] px-5 h-16">
-          <span className="text-sm font-semibold text-[#4b5a6e]">Navigation</span>
+        <div className="flex items-center justify-between border-b border-[#1a2f4a] px-5 h-16">
+          <span className="text-sm font-semibold text-white/60">Navigation</span>
           <button
             onClick={() => setIsOpen(false)}
             aria-label="Close navigation"
-            className="flex items-center justify-center w-9 h-9 rounded text-[#4b5a6e] hover:bg-[#f5f6f8]"
+            className="flex items-center justify-center w-9 h-9 rounded text-white/60 hover:bg-white/10"
           >
             <X size={20} />
           </button>
@@ -79,52 +170,46 @@ export default function MobileNav() {
         >
           {navigation.map((item) => {
             const hasChildren = !!item.children
-            const isSectionOpen = openSection === item.label
+            const isSectionOpen = openSections.has(item.href)
 
             return (
-              <div key={item.label} className="border-b border-[#f5f6f8] last:border-0">
+              <div key={item.label} className="border-b border-[#1a2f4a] last:border-0">
                 {hasChildren ? (
                   <>
                     <button
-                      onClick={() =>
-                        setOpenSection(isSectionOpen ? null : item.label)
-                      }
+                      onClick={() => toggleSection(item.href)}
                       aria-expanded={isSectionOpen}
-                      className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-[#0b1a2e] hover:bg-[#f5f6f8] transition-colors"
+                      className={`w-full flex items-center justify-between px-5 py-4 text-sm font-semibold transition-colors hover:bg-white/5 ${
+                        pathname.startsWith(item.href)
+                          ? "text-[#e8272a]"
+                          : "text-white"
+                      }`}
                     >
                       {item.label}
                       <ChevronDown
                         size={16}
-                        className={`transition-transform duration-200 text-[#4b5a6e] ${
+                        className={`transition-transform duration-200 text-white/50 ${
                           isSectionOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                     {isSectionOpen && (
-                      <div className="bg-[#f5f6f8] pb-2">
-                        {item.children!.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className={`block px-8 py-3 text-sm transition-colors hover:text-[#e8272a] ${
-                              pathname === child.href
-                                ? "text-[#e8272a] font-semibold"
-                                : "text-[#4b5a6e]"
-                            }`}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+                      <MobileNavItemList
+                        items={item.children!}
+                        openSections={openSections}
+                        toggleSection={toggleSection}
+                        pathname={pathname}
+                        depth={1}
+                      />
                     )}
                   </>
                 ) : (
                   <Link
                     href={item.href}
-                    className={`block px-5 py-4 text-sm font-semibold transition-colors hover:bg-[#f5f6f8] ${
+                    className={`block px-5 py-4 text-sm font-semibold transition-colors hover:bg-white/5 ${
                       pathname === item.href
                         ? "text-[#e8272a]"
-                        : "text-[#0b1a2e]"
+                        : "text-white"
                     }`}
                   >
                     {item.label}

@@ -32,9 +32,6 @@ export default function PrincipleSection() {
 
           {/* Architecture visual */}
           <div className="rounded-lg border border-[#dde2ea] bg-white p-8">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5a6e] mb-6">
-              A layered enterprise architecture
-            </p>
             <div className="space-y-4">
               {layerStack.map((layer, i) => (
                 <div key={layer.label}>

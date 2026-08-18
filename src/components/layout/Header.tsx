@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button"
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[#dde2ea] bg-white/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-[#1a2f4a] bg-[#0b1a2e]">
       <Container>
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -16,7 +16,7 @@ export default function Header() {
             aria-label="Crown Interactive home"
           >
             <span className="text-lg font-bold tracking-tight">
-              <span className="text-[#0b1a2e]">CROWN</span>
+              <span className="text-white">CROWN</span>
               <span className="text-[#e8272a]">interactive</span>
             </span>
           </Link>

@@ -98,22 +98,6 @@ export default function GovernmentIndustryPage() {
         </Container>
       </section>
 
-      {/* Layer stack */}
-      <section className="bg-[#071020] py-8">
-        <Container>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
-            {["Experience", "Applications", "Integration", "Data", "Infrastructure"].map((layer, i) => (
-              <span key={layer} className="text-xs font-semibold uppercase tracking-widest" style={{ color: `rgba(255,255,255,${0.25 + i * 0.12})` }}>
-                {layer}
-              </span>
-            ))}
-            <span className="text-xs text-white/25 ml-auto hidden md:inline">
-              Every layer is licensee-owned. Crown builds the stack; it never holds what runs on it.
-            </span>
-          </div>
-        </Container>
-      </section>
-
       {/* Challenges */}
       <section className="py-20 bg-white">
         <Container>

@@ -6,7 +6,7 @@ const footerSolutions = [
   { label: "1Gov", href: "/solutions/1gov" },
   { label: "CuBOSS", href: "/solutions/cuboss" },
   { label: "CICOD Enterprise Cloud", href: "/solutions/cicod" },
-  { label: "Training & Capability", href: "/company#training" },
+  { label: "Training & Capability", href: "/solutions/training" },
 ]
 
 const footerCompany = [
@@ -58,7 +58,7 @@ export default function Footer() {
                 <span>45B Admiralty Road, Lekki Phase 1, Lagos</span>
               </a>
               <a
-                href="tel:+2341454 1977"
+                href="tel:+23414541977"
                 className="flex items-center gap-2.5 text-sm text-white/60 hover:text-white transition-colors"
               >
                 <Phone size={14} className="shrink-0 text-white/40" />

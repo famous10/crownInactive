@@ -43,7 +43,7 @@ function NavDropdown({ item, onOpen, onClose, openId }: DropdownProps) {
         className={`type-body-sm font-semibold transition-colors duration-150 px-1 py-2 ${
           pathname === item.href || pathname.startsWith(item.href + "/")
             ? "text-[#e8272a]"
-            : "text-[#0b1a2e] hover:text-[#e8272a]"
+            : "text-white/80 hover:text-white"
         }`}
       >
         {item.label}
@@ -62,24 +62,24 @@ function NavDropdown({ item, onOpen, onClose, openId }: DropdownProps) {
         aria-haspopup="true"
         className={`inline-flex items-center gap-1 type-body-sm font-semibold transition-colors duration-150 px-1 py-2 ${
           isCurrentSection
-            ? "text-[#e8272a]"
-            : "text-[#0b1a2e] hover:text-[#e8272a]"
+            ? "text-white"
+            : "text-white/80 hover:text-white"
         }`}
       >
         {item.label}
-        <ChevronDown
-          size={14}
-          className={`transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-          aria-hidden
-        />
+<ChevronDown
+            size={14}
+            className={`transition-transform duration-200 text-white/60 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+            aria-hidden
+          />
       </button>
 
       {isOpen && (
         <div
           role="menu"
-          className="absolute left-0 top-full mt-1 min-w-[260px] rounded-lg border border-[#dde2ea] bg-white py-1.5 shadow-xl shadow-[#0b1a2e]/10 z-50"
+          className="absolute left-0 top-full mt-1 min-w-[260px] rounded-lg border border-[#1a2f4a] bg-white py-1.5 shadow-xl shadow-black/30 z-50"
         >
           {item.children.map((child) => {
             const childHasChildren = child.children && child.children.length > 0
@@ -107,7 +107,7 @@ function NavDropdown({ item, onOpen, onClose, openId }: DropdownProps) {
                   {child.label}
                 </span>
                 {child.description && (
-                  <span className="mt-0.5 block text-xs text-[#4b5a6e]">
+                  <span className="mt-0.5 block text-xs text-[#0b1a2e]/60">
                     {child.description}
                   </span>
                 )}
@@ -155,9 +155,9 @@ function NestedDropdown({ item, pathname, onClose }: NestedDropdownProps) {
         }}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        className={`block w-full px-4 py-3 transition-colors duration-150 hover:bg-[#f5f6f8] ${
+        className={`block w-full px-4 py-3 transition-colors duration-150 hover:bg-gray-100 ${
           isCurrentSection
-            ? "bg-[#f5f6f8]"
+            ? "bg-gray-100"
             : ""
         }`}
       >
@@ -165,14 +165,14 @@ function NestedDropdown({ item, pathname, onClose }: NestedDropdownProps) {
           <span className="text-sm font-semibold text-[#0b1a2e]">{item.label}</span>
           <ChevronRight
             size={14}
-            className={`text-[#4b5a6e] transition-transform duration-200 ${
+            className={`text-[#0b1a2e]/50 transition-transform duration-200 ${
               isOpen ? "rotate-90" : ""
             }`}
             aria-hidden
           />
         </div>
         {item.description && (
-          <span className="mt-0.5 block text-xs text-[#4b5a6e]">
+          <span className="mt-0.5 block text-xs text-[#0b1a2e]/50">
             {item.description}
           </span>
         )}
@@ -181,7 +181,7 @@ function NestedDropdown({ item, pathname, onClose }: NestedDropdownProps) {
       {isOpen && (
         <div
           role="menu"
-          className="absolute left-full top-0 ml-1 min-w-[240px] rounded-lg border border-[#dde2ea] bg-white py-1.5 shadow-xl shadow-[#0b1a2e]/10 z-50"
+          className="absolute left-full top-0 ml-1 min-w-[240px] rounded-lg border border-[#1a2f4a] bg-white py-1.5 shadow-xl shadow-black/30 z-50"
         >
           {item.children?.map((child) => (
             <Link
@@ -189,9 +189,9 @@ function NestedDropdown({ item, pathname, onClose }: NestedDropdownProps) {
               href={child.href}
               role="menuitem"
               onClick={onClose}
-              className={`block px-4 py-3 transition-colors duration-150 hover:bg-[#f5f6f8] ${
+              className={`block px-4 py-3 transition-colors duration-150 hover:bg-gray-50 ${
                 pathname === child.href || pathname.startsWith(child.href)
-                  ? "bg-[#f5f6f8]"
+                  ? "bg-gray-50"
                   : ""
               }`}
             >
@@ -199,7 +199,7 @@ function NestedDropdown({ item, pathname, onClose }: NestedDropdownProps) {
                 {child.label}
               </span>
               {child.description && (
-                <span className="mt-0.5 block text-xs text-[#4b5a6e]">
+                <span className="mt-0.5 block text-xs text-[#0b1a2e]/50">
                   {child.description}
                 </span>
               )}
