@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─── Crown Interactive Design System ─────────────────────────────────────── */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand colors — extracted from crowninteractive.com */
+  --color-crown-navy:        #0b1a2e;
+  --color-crown-navy-deep:   #071020;
+  --color-crown-navy-mid:    #112240;
+  --color-crown-red:         #e8272a;
+  --color-crown-red-dark:    #c01e21;
+  --color-crown-red-light:   #f04043;
+
+  /* Surfaces */
+  --color-crown-surface:     #f5f6f8;
+  --color-crown-surface-2:   #eceef2;
+  --color-crown-white:       #ffffff;
+
+  /* Text */
+  --color-crown-text:        #0b1a2e;
+  --color-crown-text-muted:  #4b5a6e;
+  --color-crown-text-light:  #8898aa;
+
+  /* Border */
+  --color-crown-border:      #dde2ea;
+  --color-crown-border-dark: #c8d0db;
+
+  /* Semantic */
+  --color-primary:           var(--color-crown-navy);
+  --color-primary-dark:      var(--color-crown-navy-deep);
+  --color-accent:            var(--color-crown-red);
+  --color-accent-dark:       var(--color-crown-red-dark);
+  --color-background:        var(--color-crown-white);
+  --color-surface:           var(--color-crown-surface);
+  --color-foreground:        var(--color-crown-text);
+  --color-muted:             var(--color-crown-text-muted);
+  --color-border:            var(--color-crown-border);
+
+  /* Typography scale */
+  --font-sans:    var(--font-inter);
+  --font-display: var(--font-inter);
+
+  /* Spacing / container */
+  --container-padding: 1.25rem;
+  --container-max:     80rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base reset & global styles ──────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #0b1a2e;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* ─── Typography hierarchy ─────────────────────────────────────────────────── */
+
+.type-display {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.type-h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.type-h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.type-h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.type-h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.type-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.type-body {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.type-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.type-caption {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.type-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── Focus ring ───────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #e8272a;
+  outline-offset: 2px;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f6f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #c8d0db;
+  border-radius: 3px;
+}
+
+/* ─── Layer stack visual (hero) ─────────────────────────────────────────────── */
+
+.layer-stack-bar {
+  height: 3px;
+  border-radius: 1px;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.2s;
+}
+.layer-stack-bar.active {
+  background: rgba(232,39,42,0.7);
 }
